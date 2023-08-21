@@ -2,100 +2,141 @@
   <div class="row">
     <div class="col-md-4">
       <h6>Employee Detail Entry Form</h6>
+
+      <!-- employee form  -->
+
       <div class="outer-div">
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Name :</label>
-          </div>
-          <div class="col-md-4">
-            <input type="text" class="form-control">
-          </div>
-          <div class="col-md-4">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Technology :</label>
-          </div>
-          <div class="col-md-8">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Designation :</label>
-          </div>
-          <div class="col-md-8">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Skills :</label>
-          </div>
-          <div class="col-md-5">
-            <select class="form-control">
-              <option value="">Select</option>
-              <option value="">Angular</option>
-              <option value="">Dot Net</option>
-              <option value="">Java</option>
-              <option value="">React</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Core Expertise in :</label>
-          </div>
-          <div class="col-md-8">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Certification If Any :</label>
-          </div>
-          <div class="col-md-8">
-            <input type="radio"> Yes
-            <input type="radio"> No
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
+        <form #form="ngForm">
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Name :</label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" required class="form-control" name="FirstName" #fname="ngModel"
+                [(ngModel)]="employeeObj.FirstName" placeholder="First Name">
+              <div *ngIf="fname.touched">
+                <span class="text-danger" *ngIf="fname.errors?.['required']">Required</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <input type="text" required class="form-control" name="LastName" #lname="ngModel"
+                [(ngModel)]="employeeObj.LastName" placeholder="Last Name">
+            </div>
+            <div *ngIf="lname.touched">
+              <span class="text-danger" *ngIf="lname.errors?.['required']">Required</span>
+            </div>
 
           </div>
-          <div class="col-md-8">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <label for="">Company :</label>
-          </div>
-          <div class="col-md-8">
-            <input type="text" class="form-control">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <label for="">Few Line About Yourself :</label>
-            <textarea rows="4" class="form-control mt-2"></textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="text-end">
-              <button type="button" class="btn btn mx-2">Cancel</button>
-              <button type="button" class="btn btn">Save</button>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Technology :</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" placeholder="Technology" required class="form-control" name="Technology"
+                #Technology="ngModel" [(ngModel)]="employeeObj. Technology">
+            </div>
+            <div *ngIf="Technology.touched">
+              <span class="text-danger" *ngIf="Technology.errors?.['required']">Required</span>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Designation :</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" placeholder="Designation" name="Designation" #Designation="ngModel" required
+                class="form-control" [(ngModel)]="employeeObj.Designation">
+            </div>
+            <div *ngIf="Designation.touched">
+              <span class="text-danger" *ngIf="Designation.errors?.['required']">Required</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Skills :</label>
+            </div>
+            <div class="col-md-5">
+              <select class="form-control" name="Skill" #Skill="ngModel" required [(ngModel)]="employeeObj.Skill">
+                <option selected value="">Select</option>
+                <option>Dot Net</option>
+                <option>Angular</option>
+                <option>Java</option>
+              </select>
+              <div *ngIf="Skill.touched">
+                <span class="text-danger" *ngIf="Skill.errors?.['required']"> Required</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Core Expertise in:</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" name="Core" #Core="ngModel" required class="form-control"
+                [(ngModel)]="employeeObj.Core">
+            </div>
+            <div *ngIf="Core.touched">
+              <span class="text-danger" *ngIf="Core.errors?.['required']">Required</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Certification If Any :</label>
+            </div>
+            <div class="col-md-8">
+              <input type="radio" value="Yes" name="IsCertifiction" [(ngModel)]="employeeObj.IsCertifiction">
+              Yes
+              <input type="radio" value="No" name="IsCertifiction" [(ngModel)]="employeeObj.IsCertifiction"> No
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-8">
+              <input type="text" placeholder="Certification" class="form-control" name="Certification"
+                [(ngModel)]="employeeObj.Certification">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="">Company :</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" name="Company" placeholder="Company Name" #Company="ngModel" required
+                class="form-control" [(ngModel)]="employeeObj.Company">
+            </div>
+            <div *ngIf="Company.touched">
+              <span class="text-danger" *ngIf="Company.errors?.['required']"> Required</span>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <label for="">Few Line About Yourself :</label>
+              <textarea rows="4" placeholder="Few Lines" name="FewDetails" class="form-control mt-2"
+                [(ngModel)]="employeeObj.FewDetails"></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-end">
+                <button type="button" class="btn btn mx-2">Cancel</button>
+                <button type="button" class="btn btn" [disabled]="form.invalid" (click)="OnSave()">Save</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
+    <!-- ------------------------------------------------------------------------------------ -->
+
+    <!-- employee list side -->
 
     <div class="col-md-8">
       <h6>Employee List</h6>
@@ -105,16 +146,15 @@
 
           </div>
           <div class="col-md-3">
-            <select class="form-control">
-              <option value="">Search by</option>
-              <option value="">Angular</option>
-              <option value="">Dot Net</option>
-              <option value="">Java</option>
-              <option value="">React</option>
+            <select class="form-control" [(ngModel)]="sortBy">
+              <option selected value="">Select</option>
+              <option>Dot Net</option>
+              <option>Angular</option>
+              <option>Java</option>
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" [(ngModel)]="searchBy">
           </div>
         </div>
 
@@ -134,8 +174,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-
+                <tr *ngFor="let item of employeeArray;let sr = index">
+                  <td>{{sr+1}}</td>
+                  <td>{{item.FirstName}} {{item.LastName}} </td>
+                  <td>{{item.Technology}}</td>
+                  <td>{{item.Designation}}</td>
+                  <td>{{item.Skill}}</td>
+                  <td>{{item.Core}}</td>
+                  <td>{{item.Company}}</td>
+                  <td class="text-center">
+                    <i class="fas fa-edit"></i>
+                    <i class="fa-solid fa-trash-can mx-2"></i>
+                  </td>
                 </tr>
               </tbody>
             </table>
