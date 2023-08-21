@@ -1,0 +1,18 @@
+.form-control {
+  padding: 0.075rem;
+  border: 1px solid black;
+}
+
+.outer-div {
+  padding: 15px;
+  border: 1px solid black;
+}
+
+.row {
+  padding: 10px;
+}
+
+.btn {
+  border: 1px solid black;
+
+}
