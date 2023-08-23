@@ -125,7 +125,7 @@
           <div class="row">
             <div class="col-md-12">
               <div class="text-end">
-                <button type="button" class="btn btn mx-2">Cancel</button>
+                <button type="button" class="btn btn mx-2" (click)="onReset()">Cancel</button>
                 <button type="button" class="btn btn" [disabled]="form.invalid" (click)="OnSave()">Save</button>
               </div>
             </div>
@@ -147,14 +147,14 @@
           </div>
           <div class="col-md-3">
             <select class="form-control" [(ngModel)]="sortBy">
-              <option selected value="">Select</option>
-              <option>Dot Net</option>
+              <option selected value="">Sort By</option>
               <option>Angular</option>
+              <option>Dot Net</option>
               <option>Java</option>
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="searchBy">
+            <input type="text" class="form-control" [(ngModel)]="searchBy" placeholder="Search">
           </div>
         </div>
 
@@ -174,19 +174,26 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of employeeArray;let sr = index">
-                  <td>{{sr+1}}</td>
-                  <td>{{item.FirstName}} {{item.LastName}} </td>
-                  <td>{{item.Technology}}</td>
-                  <td>{{item.Designation}}</td>
-                  <td>{{item.Skill}}</td>
-                  <td>{{item.Core}}</td>
-                  <td>{{item.Company}}</td>
-                  <td class="text-center">
-                    <i class="fas fa-edit"></i>
-                    <i class="fa-solid fa-trash-can mx-2"></i>
-                  </td>
-                </tr>
+                <ng-container *ngIf="employeeArray.length != 0">
+                  <tr *ngFor="let item of employeeArray;let sr = index">
+                    <td>{{sr+1}}</td>
+                    <td>{{item.FirstName}} {{item.LastName}} </td>
+                    <td>{{item.Technology}}</td>
+                    <td>{{item.Designation}}</td>
+                    <td>{{item.Skill}}</td>
+                    <td>{{item.Core}}</td>
+                    <td>{{item.Company}}</td>
+                    <td class="text-center">
+                      <i class="fas fa-edit" (click)="onEdit(item)"></i>
+                      <i class="fa-solid fa-trash-can mx-3" (click)="onDelete(item)"></i>
+                    </td>
+                  </tr>
+                </ng-container>
+                <ng-container *ngIf="employeeArray.length == 0">
+                  <tr>
+                    <td colspan="8" class="text-center">No Record Present</td>
+                  </tr>
+                </ng-container>
               </tbody>
             </table>
           </div>
