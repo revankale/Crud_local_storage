@@ -43,6 +43,9 @@ export class EmployeeComponent implements OnInit {
 
 
 
+
+
+
   onEdit(item: EmployeeObj) {
     this.employeeObj = item;
   }
@@ -71,9 +74,63 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  onReset(){
+  onReset() {
     this.employeeObj = new EmployeeObj();
   }
+
+
+
+  onSearch() {
+    const isData = localStorage.getItem("EmpData");
+    if (isData != null) {
+      const localData = JSON.parse(isData);
+      if (this.sortBy == "Name") {
+        const filteredData = localData.filter((m: EmployeeObj) => m.FirstName.toLocaleLowerCase().startsWith(this.searchBy.toLocaleLowerCase()))
+        this.employeeArray = filteredData;
+      }
+      if (this.sortBy == "Technology") {
+        const filteredData = localData.filter((m: EmployeeObj) => m.Technology.toLocaleLowerCase().startsWith(this.searchBy.toLocaleLowerCase()))
+        this.employeeArray = filteredData;
+      }
+      if (this.sortBy == "Designation") {
+        const filteredData = localData.filter((m: EmployeeObj) => m.Designation.toLocaleLowerCase().startsWith(this.searchBy.toLocaleLowerCase()))
+        this.employeeArray = filteredData;
+      }
+      if (this.sortBy == "Skill") {
+        const filteredData = localData.filter((m: EmployeeObj) => m.Skill.toLocaleLowerCase().startsWith(this.searchBy.toLocaleLowerCase()))
+        this.employeeArray = filteredData;
+      }
+      if (this.sortBy == "Core") {
+        const filteredData = localData.filter((m: EmployeeObj) => m.Core.toLocaleLowerCase().startsWith(this.searchBy.toLocaleLowerCase()))
+        this.employeeArray = filteredData;
+      }
+      if (this.sortBy == "Company") {
+        const filteredData = localData.filter((m: EmployeeObj) => m.Company.toLocaleLowerCase().startsWith(this.searchBy.toLocaleLowerCase()))
+        this.employeeArray = filteredData;
+      }
+
+    }
+
+
+  }
+
+
+  onSort() {
+    const isData = localStorage.getItem("EmpData");
+    if (isData != null) {
+      const localData = JSON.parse(isData);
+      if (this.sortBy == "Name") {
+        const filteredData = localData.sort((a: any, b: any) => a.FirstName.localeCompare(b.FirstName))
+        this.employeeArray = filteredData;
+      }
+      if (this.sortBy == "Technology") {
+        const filteredData = localData.sort((a: any, b: any) => a.Technology.localeCompare(b.Technology))
+        this.employeeArray = filteredData;
+      }
+    }
+  }
+
+
 
 
 }

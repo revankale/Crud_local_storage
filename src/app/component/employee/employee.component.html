@@ -95,8 +95,9 @@
 
             </div>
             <div class="col-md-8">
-              <input type="text" placeholder="Certification" class="form-control" name="Certification"
-                [(ngModel)]="employeeObj.Certification">
+              <input type="text" placeholder="Certification"
+                [disabled]="employeeObj.IsCertifiction == 'No' || employeeObj.IsCertifiction == ''" class="form-control"
+                name="Certification" [(ngModel)]="employeeObj.Certification">
             </div>
           </div>
 
@@ -146,15 +147,19 @@
 
           </div>
           <div class="col-md-3">
-            <select class="form-control" [(ngModel)]="sortBy">
-              <option selected value="">Sort By</option>
-              <option>Angular</option>
-              <option>Dot Net</option>
-              <option>Java</option>
+            <select class="form-control" [(ngModel)]="sortBy" (change)="onSort()">
+              <option selected value="">Select Sort By</option>
+              <option>Name</option>
+              <option>Technology</option>
+              <option>Designation</option>
+              <option>Skill</option>
+              <option>Core</option>
+              <option>Company</option>
             </select>
           </div>
           <div class="col-md-3">
-            <input type="text" class="form-control" [(ngModel)]="searchBy" placeholder="Search">
+            <input type="text" class="form-control" [(ngModel)]="searchBy" (ngModelChange)="onSearch()"
+              placeholder="Search">
           </div>
         </div>
 
