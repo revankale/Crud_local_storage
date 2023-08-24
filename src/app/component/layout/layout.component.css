@@ -1,0 +1,19 @@
+.bar {
+  background-color: #3f51b5 !important;
+}
+
+.box-shadow {
+  box-shadow: 0 2px 4px 0 gray, 0 4px 16px 0 gray;
+}
+
+.content-hover:hover {
+  background-color: #000;
+}
+
+.navbar-nav {
+  font-size: 15px;
+}
+
+.content-hover {
+  color: aliceblue;
+}
